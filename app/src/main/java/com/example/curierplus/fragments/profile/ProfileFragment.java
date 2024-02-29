@@ -12,19 +12,15 @@ import android.view.ViewGroup;
 
 import com.example.curierplus.R;
 import com.example.curierplus.databinding.FragmentProfileBinding;
-import com.example.curierplus.fragments.utils.OptionsPanelService;
 
 public class ProfileFragment extends Fragment {
 
     FragmentProfileBinding binding;
-    OptionsPanelService panelService;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        panelService = new OptionsPanelService(binding.panel, getParentFragmentManager());
-        panelService.initOptions();
         return binding.getRoot();
     }
 

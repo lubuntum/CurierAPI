@@ -25,7 +25,6 @@
         android:visibility="invisible"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        app:backgroundTint="#6ea8fe"
         android:src="@drawable/baseline_format_list_bulleted_24"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

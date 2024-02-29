@@ -14,7 +14,6 @@ import com.example.curierplus.R;
 import com.example.curierplus.databinding.FragmentCurrentOrdersBinding;
 import com.example.curierplus.databinding.OptionsPanelBinding;
 import com.example.curierplus.fragments.auth.LoginFragment;
-import com.example.curierplus.fragments.utils.OptionsPanelService;
 import com.example.curierplus.local.LocalStoreHelper;
 
 /*
@@ -24,8 +23,6 @@ import com.example.curierplus.local.LocalStoreHelper;
 public class CurrentOrdersFragment extends Fragment {
 
     FragmentCurrentOrdersBinding binding;
-    OptionsPanelBinding panelBinding;
-    OptionsPanelService optionsPanelService;
     public CurrentOrdersFragment() {
         // Required empty public constructor
     }
@@ -39,9 +36,9 @@ public class CurrentOrdersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCurrentOrdersBinding.inflate(inflater, container, false);
-        panelBinding = binding.panel;
-        optionsPanelService = new OptionsPanelService(binding.panel, getParentFragmentManager());
-        optionsPanelService.initOptions();
+        //panelBinding = binding.panel;
+        //optionsPanelService = new OptionsPanelService(binding.panel, getParentFragmentManager());
+        //optionsPanelService.initOptions();
         return binding.getRoot();
     }
 
