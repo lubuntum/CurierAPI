@@ -1,4 +1,4 @@
-package com.example.curierplus.fragments.utils;
+package com.example.curierplus.ui.fragments.utils;
 
 import android.animation.Animator;
 import android.content.Intent;
@@ -16,9 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.example.curierplus.LoginActivity;
 import com.example.curierplus.R;
 import com.example.curierplus.databinding.OptionsPanelBinding;
-import com.example.curierplus.fragments.auth.LoginFragment;
-import com.example.curierplus.fragments.orders.CurrentOrdersFragment;
-import com.example.curierplus.fragments.profile.ProfileFragment;
+import com.example.curierplus.ui.fragments.orders.CurrentOrdersFragment;
+import com.example.curierplus.ui.fragments.profile.ProfileFragment;
 import com.example.curierplus.local.LocalStoreHelper;
 
 public class OptionsPanelFragment extends Fragment {
@@ -54,6 +53,8 @@ public class OptionsPanelFragment extends Fragment {
         });
     }
     public void ordersBtnInit(){
+        //выбранная опция по дефолту
+        binding.orders.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6ea8fe")));
         binding.orders.setOnClickListener(v->{
             binding.orders.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6ea8fe")));
             binding.profile.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8BFE7")));

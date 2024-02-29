@@ -1,4 +1,4 @@
-package com.example.curierplus.fragments.auth;
+package com.example.curierplus.ui.fragments.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.curierplus.MainActivity;
-import com.example.curierplus.R;
 import com.example.curierplus.api.UserAuth;
 import com.example.curierplus.databinding.FragmentLoginBinding;
-import com.example.curierplus.fragments.orders.CurrentOrdersFragment;
 import com.example.curierplus.local.LocalStoreHelper;
 
 import java.io.IOException;

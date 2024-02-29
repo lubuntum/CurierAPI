@@ -1,4 +1,4 @@
-package com.example.curierplus.fragments.profile;
+package com.example.curierplus.ui.fragments.profile;
 
 import android.os.Bundle;
 

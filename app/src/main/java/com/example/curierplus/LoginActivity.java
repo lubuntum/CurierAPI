@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.curierplus.fragments.auth.LoginFragment;
+import com.example.curierplus.ui.fragments.auth.LoginFragment;
 import com.example.curierplus.local.LocalStoreHelper;
 
 public class LoginActivity extends AppCompatActivity {

@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.curierplus.fragments.auth.LoginFragment;
-import com.example.curierplus.fragments.orders.CurrentOrdersFragment;
-import com.example.curierplus.local.LocalStoreHelper;
+import com.example.curierplus.ui.fragments.orders.CurrentOrdersFragment;
 
 public class MainActivity extends AppCompatActivity {
 
