@@ -1,5 +1,6 @@
 package com.example.curierplus.fragments.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.curierplus.MainActivity;
 import com.example.curierplus.R;
 import com.example.curierplus.api.UserAuth;
 import com.example.curierplus.databinding.FragmentLoginBinding;
@@ -68,10 +70,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void openOrdersFragment(){
-        getParentFragmentManager().beginTransaction()
-                .replace(R.id.main_fragment, new CurrentOrdersFragment(), "current_orders")
-                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                .commit();
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     private boolean filterData(){
