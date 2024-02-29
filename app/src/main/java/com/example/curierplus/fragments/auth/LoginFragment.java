@@ -41,9 +41,9 @@ public class LoginFragment extends Fragment {
     }
     private void submitBtnInit(){
         binding.submitBtn.setOnClickListener(view -> {
+            if(!filterData()) return;
             binding.progress.setVisibility(View.VISIBLE);
             Runnable submitRnb = () -> {
-                if(!filterData()) return;
                 String login = binding.login.getText().toString();
                 String pass = binding.pass.getText().toString();
                 try {

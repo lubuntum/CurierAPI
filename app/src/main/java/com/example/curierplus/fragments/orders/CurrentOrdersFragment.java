@@ -14,13 +14,18 @@ import com.example.curierplus.R;
 import com.example.curierplus.databinding.FragmentCurrentOrdersBinding;
 import com.example.curierplus.databinding.OptionsPanelBinding;
 import com.example.curierplus.fragments.auth.LoginFragment;
+import com.example.curierplus.fragments.utils.OptionsPanelService;
 import com.example.curierplus.local.LocalStoreHelper;
 
-
+/*
+* Сделать панель выезжающей + реализовать заказы и профиль работника
+* и готово.
+* */
 public class CurrentOrdersFragment extends Fragment {
 
     FragmentCurrentOrdersBinding binding;
     OptionsPanelBinding panelBinding;
+    OptionsPanelService optionsPanelService;
     public CurrentOrdersFragment() {
         // Required empty public constructor
     }
@@ -35,22 +40,13 @@ public class CurrentOrdersFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentCurrentOrdersBinding.inflate(inflater, container, false);
         panelBinding = binding.panel;
+        optionsPanelService = new OptionsPanelService(binding.panel, getParentFragmentManager());
+        optionsPanelService.initOptions();
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        logoutBtnInit();
     }
-
-    private void logoutBtnInit(){
-        panelBinding.logout.setOnClickListener(view -> {
-            LocalStoreHelper.removeEmployee();
-            getParentFragmentManager().beginTransaction()
-                    .replace(R.id.main_fragment, new LoginFragment(), "login")
-                    .commit();
-        });
-    }
-
 }
