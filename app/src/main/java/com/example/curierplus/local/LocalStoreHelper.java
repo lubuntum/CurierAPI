@@ -25,4 +25,8 @@ public class LocalStoreHelper {
         if(preferences == null) throw new NullPointerException();
         preferences.edit().putString(LOCAL_USER, employeeJSON).apply();
     }
+    public static void removeEmployee(){
+        if(preferences == null) throw new NullPointerException();
+        preferences.edit().remove(LOCAL_USER).apply();
+    }
 }
