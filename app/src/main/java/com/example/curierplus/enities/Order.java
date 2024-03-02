@@ -1,21 +1,27 @@
 package com.example.curierplus.enities;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
+    public int id;
+    @SerializedName("date")
    String time;
+    @SerializedName("result_price")
    float price;
+    @SerializedName("status_str")
    String status;
    String clientFullName;
    String phone;
-   String [] foodList;
+   List<Food> foodList;
 
     public Order(String time, float price, String status, String clientFullName, String phone) {
         this.time = time;
@@ -25,23 +31,38 @@ public class Order {
         this.phone = phone;
     }
     public Order(){}
-    public static List<Order> parseOrdersArray(JSONArray ordersJson) throws JSONException {
+    public static List<Order> parseOrdersArray(JSONArray array) throws JSONException {
         Gson gson = new Gson();
         List<Order> orders = new LinkedList<>();
-        for(int i = 0; i < ordersJson.length();i++){
-            JSONObject orderJson = ordersJson.getJSONObject(i);
-            Order order = new Order();
-            order.setTime(orderJson.getString("date"));
-            order.setPrice(Float.valueOf(orderJson.getString("result_price")));
-            order.setStatus(orderJson.getString("status_str"));
+        for(int i = 0; i < array.length();i++){
+            JSONObject orderJson = array.getJSONObject(i);
+            Order order = gson.fromJson(orderJson.toString(), Order.class);
             order.setClientFullName(String.format("%s %s %s",
                     orderJson.getString("second_name"),
                     orderJson.getString("name"),
                     orderJson.getString("patronymic")));
-            order.setPhone(orderJson.getString("phone"));
             orders.add(order);
         }
         return orders;
+    }
+    public List<Food> parseFoodList(JSONArray array) throws JSONException {
+        Gson gson = new Gson();
+        List<Food> foods = new LinkedList<>();
+        for (int i = 0; i < array.length(); i++) {
+            JSONObject foodJson = array.getJSONObject(i);
+            Food food = gson.fromJson(foodJson.toString(), Food.class);
+            foods.add(food);
+        }
+        this.foodList = foods;
+        return foods;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setPhone(String phone) {
@@ -84,11 +105,11 @@ public class Order {
         this.clientFullName = clientFullName;
     }
 
-    public String[] getFoodList() {
+    public List<Food> getFoodList() {
         return foodList;
     }
 
-    public void setFoodList(String[] foodList) {
+    public void setFoodList(List<Food> foodList) {
         this.foodList = foodList;
     }
 }
