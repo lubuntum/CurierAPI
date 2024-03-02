@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.curierplus.R;
 import com.example.curierplus.databinding.FragmentProfileBinding;
+import com.example.curierplus.local.LocalStoreHelper;
 
 public class ProfileFragment extends Fragment {
 
@@ -26,6 +27,9 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        binding.fullName.setText(LocalStoreHelper.currentEmployee.getFullName());
+        binding.workStatus.setText(String.format(getString(R.string.working_status),"Работает"));
+        binding.totalOrdersToday.setText(String.format(getString(R.string.total_orders_today),15));
+        binding.lastAuthDate.setText(String.format(getString(R.string.last_auth_date), "05.02.2024"));
     }
 }
