@@ -4,4 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello">Добро пожаловать %s</string>
     <string name="auth_error">Пользователь не найден</string>
+    <string name="working_status">Статус: %s</string>
+    <string name="total_orders_today">Заказы сегодня: %d</string>
+    <string name="last_auth_date">Последний вход в аккаунт: %s</string>
 </resources>
