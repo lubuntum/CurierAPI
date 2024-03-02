@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,20 +17,24 @@ import com.example.curierplus.api.OrdersAPI;
 import com.example.curierplus.databinding.FragmentCurrentOrdersBinding;
 import com.example.curierplus.enities.Order;
 import com.example.curierplus.ui.adapters.OrdersAdapter;
+import com.example.curierplus.ui.dialog.FoodListDialog;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /*
 * Сделать панель выезжающей + реализовать заказы и профиль работника
 * и готово.
 * */
-public class CurrentOrdersFragment extends Fragment {
+public class CurrentOrdersFragment extends Fragment
+        implements OrdersAdapter.ViewHolder.OnBtnClickListener,
+                    OrdersAdapter.ViewHolder.OnCompleteOrderClickListener{
 
     FragmentCurrentOrdersBinding binding;
     OrdersAdapter adapter;
+    Order lastCompleteOrder = null;
     //List<Order> orderList;
     MutableLiveData<List<Order>> orders = new MutableLiveData<>();
+    MutableLiveData<Order> orderCompleteStatus = new MutableLiveData<>();
     public CurrentOrdersFragment() {
         // Required empty public constructor
     }
@@ -54,7 +57,8 @@ public class CurrentOrdersFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        statusObserverInit();
+        changeStatusObserverInit();
+        ordersObserverInit();
         loadOrders();
     }
     public void loadOrders(){
@@ -63,15 +67,41 @@ public class CurrentOrdersFragment extends Fragment {
         };
         new Thread(loadOrdersRnb).start();
     }
-    public void statusObserverInit(){
+    public void ordersObserverInit(){
         orders.observe(getViewLifecycleOwner(), orders -> {
             binding.progress.setVisibility(View.GONE);
             if (orders == null){
                 Toast.makeText(getContext(), "Заказы не найдены, перезайдите на страницу", Toast.LENGTH_SHORT).show();
                 return;
             }
-            adapter = new OrdersAdapter(getContext(), R.layout.order_item, orders);
+            adapter = new OrdersAdapter(getContext(), R.layout.order_item, orders, this,this);
             binding.ordersList.setAdapter(adapter);
         });
+    }
+    public void changeStatusObserverInit(){
+        orderCompleteStatus.observe(getViewLifecycleOwner(), order -> {
+            if(order == null){
+                Toast.makeText(getContext(), "Не удалось изменить статус, попробуйте еще раз", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Toast.makeText(
+                    getContext(),
+                    String.format("Заказ для %s успешно закрыт", order.getClientFullName()),
+                    Toast.LENGTH_SHORT).show();
+            adapter.removeItem(order);
+        });
+    }
+
+    @Override
+    public void onClick(int pos) {
+        FoodListDialog dialog = FoodListDialog.getInstance(adapter.getItemByPos(pos));
+        dialog.show(getParentFragmentManager(), "food_list");
+    }
+
+    @Override
+    public void completeOrder(int pos) {
+        new Thread(()-> orderCompleteStatus.postValue(
+                OrdersAPI.updateOrderStatus(adapter.getItemByPos(pos))))
+                .start();
     }
 }

@@ -26,12 +26,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_playlist_play_24"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true" />
             <ImageView
                 android:id="@+id/complete_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_task_alt_24"/>
+                android:src="@drawable/baseline_task_alt_24"
+                android:foreground="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"/>
         </LinearLayout>
         <TextView
             android:id="@+id/phone"

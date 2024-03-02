@@ -15,7 +15,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 public class UserAuth {
-    public static final String API_URL = "http://192.168.157.75:3000/auth";
     public static final String SUC_STATUS = "Добро пожаловать";
     public static final String AUTH_ERROR = "Пользователь не найден";
     public static final String NETWORK_ERROR = "Ошибка соединения";
@@ -27,7 +26,7 @@ public class UserAuth {
                 .add("pass", generateMD5(pass))
                 .build();
         Request request = new Request.Builder()
-                .url(API_URL)
+                .url(String.format("%s/%s", OrdersAPI.URL, "auth"))
                 .post(requestBody)
                 .header("Content-Type","application/json")
                 .build();
