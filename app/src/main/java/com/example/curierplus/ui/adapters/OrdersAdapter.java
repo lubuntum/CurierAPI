@@ -62,7 +62,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         int pos = orderList.indexOf(order);
         if (pos == -1) return;
         orderList.remove(order);
-        notifyItemChanged(pos);
+        notifyDataSetChanged();
+        //notifyItemChanged(pos);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
