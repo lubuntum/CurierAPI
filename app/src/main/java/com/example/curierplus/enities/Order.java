@@ -1,5 +1,6 @@
 package com.example.curierplus.enities;
 
+import com.example.curierplus.local.DateHelper;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
@@ -74,6 +75,9 @@ public class Order implements Serializable {
     }
 
     public String getTime() {
+        return DateHelper.getTimeFromDate(time);
+    }
+    public String getFullDate(){
         return time;
     }
 

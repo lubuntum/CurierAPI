@@ -5,6 +5,7 @@
     <string name="hello">Добро пожаловать %s</string>
     <string name="auth_error">Пользователь не найден</string>
     <string name="working_status">Статус: %s</string>
-    <string name="total_orders_today">Заказы сегодня: %d</string>
+    <string name="total_orders_today">Заказов осталось: %d</string>
     <string name="last_auth_date">Последний вход в аккаунт: %s</string>
+    <string name="completed_orders_today">Выполнено заказов за сегодня: %d</string>
 </resources>

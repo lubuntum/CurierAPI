@@ -16,6 +16,7 @@ import com.example.curierplus.R;
 import com.example.curierplus.api.OrdersAPI;
 import com.example.curierplus.databinding.FragmentCurrentOrdersBinding;
 import com.example.curierplus.enities.Order;
+import com.example.curierplus.local.LocalStoreHelper;
 import com.example.curierplus.ui.adapters.OrdersAdapter;
 import com.example.curierplus.ui.dialog.FoodListDialog;
 
@@ -84,6 +85,8 @@ public class CurrentOrdersFragment extends Fragment
                 Toast.makeText(getContext(), "Не удалось изменить статус, попробуйте еще раз", Toast.LENGTH_SHORT).show();
                 return;
             }
+            LocalStoreHelper.workActivity.ordersComplete++;
+            LocalStoreHelper.saveWorkActivity();
             Toast.makeText(
                     getContext(),
                     String.format("Заказ для %s успешно закрыт", order.getClientFullName()),

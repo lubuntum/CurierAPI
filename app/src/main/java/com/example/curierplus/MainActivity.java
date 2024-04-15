@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.curierplus.local.LocalStoreHelper;
 import com.example.curierplus.ui.fragments.orders.CurrentOrdersFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,5 +17,10 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.main_fragment, new CurrentOrdersFragment(), "current_orders")
                 .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .commit();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 }
