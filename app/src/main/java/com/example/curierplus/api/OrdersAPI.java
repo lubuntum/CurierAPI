@@ -16,7 +16,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class OrdersAPI {
-    public static final String URL = "http://192.168.157.75:3000";
+    public static final String URL = "http://192.168.50.75:3000";
     public static final String SUCCESS_RES = "Заказы найдены";
     public static List<Order> loadOrdersForEmployee(){
         OkHttpClient client = new OkHttpClient.Builder().build();

@@ -6,6 +6,7 @@ public class Employee {
     public String secondName;
     public String patronymic;
     public String sessionKey;
+    public String lastAuth;
 
     public Employee(int id, String name, String secondName, String patronymic, String sessionKey) {
         this.id = id;
@@ -14,8 +15,17 @@ public class Employee {
         this.patronymic = patronymic;
         this.sessionKey = sessionKey;
     }
+
     public String getFullName(){
         return String.format("%s %s %s", secondName, name, patronymic);
+    }
+
+    public String getLastAuth() {
+        return lastAuth;
+    }
+
+    public void setLastAuth(String lastAuth) {
+        this.lastAuth = lastAuth;
     }
 
     public int getId() {

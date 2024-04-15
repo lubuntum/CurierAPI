@@ -1,5 +1,6 @@
 package com.example.curierplus.api;
 
+import com.example.curierplus.local.DateHelper;
 import com.example.curierplus.local.LocalStoreHelper;
 
 import org.json.JSONException;
@@ -22,6 +23,7 @@ public class UserAuth {
         OkHttpClient client = new OkHttpClient.Builder().build();
         RequestBody requestBody = null;
         requestBody = new FormBody.Builder()
+                .add("last_auth", DateHelper.getCurrentDate())
                 .add("login", login)
                 .add("pass", generateMD5(pass))
                 .build();
